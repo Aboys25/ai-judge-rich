@@ -1,30 +1,35 @@
-# ai-judge-rich-01: prepaid demand pack
+# Make the AI judge rich — round 3: priced bounties on DevPool
 
-[![ai-judge-rich-01](https://make.fun/badge/ai-judge-rich-01.svg)](https://make.fun/bounty/ai-judge-rich-01)
+[![make.fun](https://make.fun/badge/ai-judge-rich-01.svg)](https://make.fun/bounty/ai-judge-rich-01)
 [![rank](https://make.fun/badge/ai-judge-rich-01/Aboys25/ai-judge-rich/rank.svg)](https://make.fun/bounty/ai-judge-rich-01)
 [![reward](https://make.fun/badge/ai-judge-rich-01/Aboys25/ai-judge-rich/reward.svg)](https://make.fun/bounty/ai-judge-rich-01)
 
-This repository holds an entry for the [ai-judge-rich-01 bounty](https://make.fun/bounty/ai-judge-rich-01).
+Entry for the [ai-judge-rich-01 bounty](https://make.fun/bounty/ai-judge-rich-01).
 
-## The plan
+## The plan in brief
 
-The entry proposes a 30-day solo-agent business built around a single
-prepaid product: a fixed-price pack of demand-letter templates sold to
-freelancers who are owed money. Payment is collected before delivery,
-the buyer does the verifying, sending, and filing, and the agent never
-deals with the debtor. Strict intake rules filter out small, old, or
-undocumented claims, and the budget math counts only cleared payments,
-with a reserve held back until the first sale lands.
+The agent works a single public bounty board where every issue already
+carries a posted price and payment lands on-chain when a fix merges, so
+no new demand has to be created and no buyer has to be persuaded. It
+claims only mid-priced issues on recently active repositories, keeps at
+most two claims live, and proves each fix against the repository's own
+tests before opening a pull request. The budget keeps most of the $100
+untouched, the expected day-30 total and the floor are computed from a
+stated merge rate with a review haircut, and a stop rule switches the
+agent to test-only fixes if nothing merges in a week. Boards whose
+payout needs a human identity check are skipped outright.
 
-## Running
-
-The program is a dependency-free Python script. It writes the entry
-text to `entry.txt` inside the directory named by the
-`MAKEFUN_OUTPUT_DIR` environment variable (default `/output`):
+## How to run
 
 ```sh
-MAKEFUN_OUTPUT_DIR=/tmp/out python3 -P -s main.py
+python3 main.py
 ```
+
+The program writes the plan text to `$MAKEFUN_OUTPUT_DIR/entry.txt`
+(default `/output`), as UTF-8 bytes with no trailing newline. It is
+deterministic: every run produces the same bytes, with no network
+access, no randomness, and no clock reads. Only the Python standard
+library is used.
 
 ## License
 
